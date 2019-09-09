@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Switch } from "react-router-dom";
 
-import { Sidebar } from '../Sidebar/Sidebar.jsx';
-import { Index } from '../Index/Index.jsx';
-import { About } from '../About/About.jsx';
-import { Menu } from '../Menu/Menu.jsx';
+import { Sidebar } from '../../components/Sidebar/Sidebar.jsx';
+import { Index } from '../../components/Index/Index.jsx';
+import { About } from '../../components/About/About.jsx';
+import { Menu } from '../../components/Menu/Menu.jsx';
 
 export default class App extends Component {
     render() {

@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 
-import { Filter } from '../Filter/Filter.jsx';
-import { User } from '../User/User.jsx';
-import { Navigation } from '../Navigation/Navigation.jsx';
+import UserContainers from '../../containers/UsersContainers/UsersContainers.jsx';
+import NavigationContainer from '../../containers/NavigationContainer/NavigationContainer.jsx';
+import FilterContainer from '../../containers/FilterContainer/FilterContainer.jsx';
 
 export class Index extends Component {
     render() {
         return(
             <div>
-                <Filter />
+                <FilterContainer />
                 <div>
-                    <Navigation />
+                    <NavigationContainer />
                 </div>
-                <User />
+                <UserContainers />
             </div>
         )
     }

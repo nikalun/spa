@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 
-export class Menu extends Component {
-    render() {
-        return  <button>Menu</button>;
-    }
-}
+export const Menu = memo(props => {
+    return  <button>Menu</button>;
+});

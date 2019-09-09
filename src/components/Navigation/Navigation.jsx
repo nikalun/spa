@@ -1,17 +1,23 @@
-import React, { Component, Fragment } from 'react';
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 
-export class Navigation extends Component {
-    render() {
-        return (
-            <Fragment>
-                <button>prev</button>
-                <span>
-                        <span>1</span>
-                        from
-                        <span>6</span>
-                    </span>
-                <button>next</button>
-            </Fragment>
-        )
-    }
-}
+export const Navigation = memo(props => {
+    const { length, onClick, current } = props;
+
+    return (
+        <div onClick={onClick}>
+            <button>prev</button>
+            <span>
+                <span>{ current }</span>
+                from
+                <span> { length } </span>
+            </span>
+            <button>next</button>
+        </div>
+    )
+});
+
+Navigation.PropTypes = {
+    onClick: PropTypes.func,
+    current: PropTypes.number,
+};
