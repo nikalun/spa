@@ -8,7 +8,7 @@ export const Navigation = memo(props => {
         <div onClick={onClick}>
             <button>prev</button>
             <span>
-                <span>{ current }</span>
+                <span>{ current } </span>
                 from
                 <span> { length } </span>
             </span>

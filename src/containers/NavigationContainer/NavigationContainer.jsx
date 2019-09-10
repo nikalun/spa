@@ -1,43 +1,47 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { Navigation } from '../../components/Navigation/Navigation.jsx';
+import {setCurrentUser} from "../../actions";
 
 class NavigationContainer extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {
-            current: 1
-        };
-    }
+    state = {
+        countUsers: null
+    };
 
     render() {
-        const { list, currentGroup } = this.props;
-        let countUsers;
+        const { list, currentGroup, currentUser } = this.props;
+        const { countUsers } = this.state;
 
         if (currentGroup === 'all') {
-            countUsers = list.length;
+            this.setState({
+                countUsers: list.length,
+            });
         } else {
-            countUsers = list.filter(item => item.group === currentGroup).length;
+            this.setState({
+                countUsers: list.filter(item => item.group === currentGroup).length,
+            });
         }
-        console.log(this.state.current);
-        return <Navigation length={countUsers} current={this.state.current} onClick={this.onHandlerClick} />
+
+        return <Navigation length={countUsers} current={currentUser} onClick={this.onHandlerClick} />
     }
 
     onHandlerClick = e => {
         const target = e.target;
-        const { currentGroup } = this.props;
+        const { setCurrentUser, currentUser } = this.props;
+        const { countUsers } = this.state;
 
         if (target.tagName === 'BUTTON') {
             const prev = target.innerHTML === 'prev';
 
             if (prev) {
                 this.setState({
-                   current: this.state.current > 1 ? this.state.current-- : 1,
+                   current: currentUser > 1 ? setCurrentUser(currentUser - 1) : 1,
                 });
             } else {
                 this.setState({
-                    current: this.state.current < currentGroup.length ? this.state.current++ : currentGroup,
+                    current: currentUser < countUsers ? setCurrentUser(currentUser + 1) : countUsers,
                 });
             }
         }
@@ -48,7 +52,14 @@ const mapStateToProps = state => {
     return {
         list: state.users.list,
         currentGroup: state.currentGroup,
+        currentUser: state.currentUser,
     };
 };
 
-export default connect(mapStateToProps)(NavigationContainer);
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({
+        setCurrentUser,
+    }, dispatch)
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationContainer);

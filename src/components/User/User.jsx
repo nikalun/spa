@@ -1,23 +1,29 @@
-import React, { Component } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
-export const User = props => {
+export const User = memo( props => {
+    const { data: { name, description }, onClick } = props;
+
     return (
-        <div>
+        <div onClick={onClick}>
             <div>
                 <div>Name:</div>
-                <div>*name*</div>
+                <div>{name}</div>
                 <button>edit</button>
             </div>
             <div>
                 <div>Description:</div>
-                <div>*description*</div>
+                <div>{description}</div>
                 <button>edit</button>
             </div>
         </div>
     )
-};
+});
 
 User.propTypes = {
-    data: PropTypes.object
+    data: PropTypes.shape({
+        name: PropTypes.string,
+        description: PropTypes.string,
+    }),
+    onClick: PropTypes.func,
 };

@@ -2,7 +2,7 @@ import Users from '../users';
 
 export function currentUser(state = 1, action) {
     switch (action.type) {
-        case 'CURRENT_USER':
+        case 'SET_CURRENT_USER':
             return action.payload;
         default:
             return state;

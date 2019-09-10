@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Filter } from '../../components/Filter/Filter.jsx';
-import {setGroup} from "../../actions";
+import { setGroup, setCurrentUser } from "../../actions";
 
 class FilterContainer extends PureComponent {
     render() {
@@ -11,16 +11,18 @@ class FilterContainer extends PureComponent {
     }
 
     onHandlerClick = e => {
-        const { setGroup } = this.props;
+        const { setGroup, setCurrentUser } = this.props;
         const target = e.target;
         const group = target.getAttribute('data-filter');
         setGroup(group);
+        setCurrentUser(1);
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-        setGroup
+        setGroup,
+        setCurrentUser,
     }, dispatch)
 };
 
