@@ -8,12 +8,12 @@ export const User = memo( props => {
         <div onClick={onClick}>
             <div>
                 <div>Name:</div>
-                <div>{name}</div>
+                <div contentEditable={false}>{name}</div>
                 <button>edit</button>
             </div>
             <div>
                 <div>Description:</div>
-                <div>{description}</div>
+                <div contentEditable={false}>{description}</div>
                 <button>edit</button>
             </div>
         </div>

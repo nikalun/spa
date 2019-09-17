@@ -22,11 +22,17 @@ const config = {
                 }
             },
             {
-                test: /\.css/,
+                test: /\.styl/,
                 use: [
                     isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    { loader: 'css-loader', options: { importLoaders: 1 } },
-                    'postcss-loader'
+                    { loader: 'css-loader',
+                        options: {
+                            modules: {
+                                localIdentName: '[name]__[local]',
+                            }
+                        }
+                    },
+                    { loader: 'stylus-loader' },
                 ]
             }
         ]

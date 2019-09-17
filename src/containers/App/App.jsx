@@ -1,31 +1,51 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
+import classnames from 'classnames';
 
 import { Sidebar } from '../../components/Sidebar/Sidebar.jsx';
 import { Index } from '../../components/Index/Index.jsx';
 import { About } from '../../components/About/About.jsx';
 import { Menu } from '../../components/Menu/Menu.jsx';
 
-export default class App extends Component {
+import css from './App.styl';
+
+export class App extends Component {
+    state = {
+        isOpenSidebar: false,
+    }
+
     render() {
+        const sidebar = classnames(css.sidebar, {
+            [css.sidebar_open]: this.state.isOpenSidebar,
+        })
         return (
-            <Fragment>
-                <header>
-                   <Menu />
-                </header>
-               <main>
-                   <aside>
-                       <Sidebar />
-                   </aside>
-                   <div>
-                        <Switch>
-                            <Route path="/" exact component={Index} />
-                            <Route path="/about/"  component={About} />
-                        </Switch>
-                   </div>
-               </main>
-                <footer></footer>
-            </Fragment>
+            <div className={css.container}>
+                <div className={sidebar}>
+                    <aside>
+                        <Sidebar />
+                    </aside>
+                </div>
+                <div className={css.content}>
+                    <header>
+                        <Menu onClick={this.onClickHandler}/>
+                    </header>
+                    <main>
+                        <div>
+                            <Switch>
+                                <Route path="/" exact component={Index} />
+                                <Route path="/about/"  component={About} />
+                            </Switch>
+                        </div>
+                    </main>
+                    <footer></footer>
+                </div>
+            </div>
         )
+    }
+
+    onClickHandler = () => {
+        this.setState({
+            isOpenSidebar: !this.state.isOpenSidebar
+        })
     }
 }

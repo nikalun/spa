@@ -24,7 +24,9 @@ class UsersContainers extends PureComponent {
 
         if (target.tagName === 'BUTTON') {
             const previous = target.previousSibling;
-            previous.setAttribute('contenteditable', true);
+            const editable = previous.getAttribute('contenteditable');
+
+            editable === 'true' ? previous.setAttribute('contenteditable', false) : previous.setAttribute('contenteditable', true);
         }
     }
 }
