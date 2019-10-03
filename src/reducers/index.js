@@ -18,8 +18,13 @@ export function currentGroup(state = 'all', action) {
     }
 }
 
-export function users(state = Users, action) {
+export function users(state = {}, action) {
     switch (action.type) {
+        case 'GET_USERS_LIST':
+            return state = {
+                ...state,
+                ...action.payload
+            };
         case 'FILTER_GROUP':
             return action.payload;
         default:

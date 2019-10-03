@@ -1,18 +1,26 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
+import { Button } from '../../components/Button/Button.jsx';
+
+import css from './theme/Navigation.styl';
+
+const buttonTheme = {
+    container: css.buttonContainer,
+};
+
 export const Navigation = memo(props => {
     const { length, onClick, current } = props;
 
     return (
-        <div onClick={onClick}>
-            <button>prev</button>
+        <div className={css.container} onClick={onClick}>
+            <Button theme={buttonTheme}>{`<`}</Button>
             <span>
                 <span>{ current } </span>
                 from
                 <span> { length } </span>
             </span>
-            <button>next</button>
+            <Button theme={buttonTheme}>{`>`}</Button>
         </div>
     )
 });

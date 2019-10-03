@@ -14,6 +14,7 @@ class FilterContainer extends PureComponent {
         const { setGroup, setCurrentUser } = this.props;
         const target = e.target;
         const group = target.getAttribute('data-filter');
+
         setGroup(group);
         setCurrentUser(1);
     }

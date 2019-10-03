@@ -11,3 +11,17 @@ export const setCurrentUser = current => {
         payload: current
     }
 };
+
+export const usersList = url => {
+    return {
+        type: 'USERS_LIST',
+        payload: url,
+    }
+};
+
+export const getUsersList = list => {
+    return {
+        type: 'GET_USERS_LIST',
+        payload: list
+    }
+};

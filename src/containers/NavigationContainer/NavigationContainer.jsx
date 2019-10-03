@@ -7,21 +7,24 @@ import {setCurrentUser} from "../../actions";
 
 class NavigationContainer extends PureComponent {
     state = {
-        countUsers: null
+        countUsers: 0
     };
 
     render() {
         const { list, currentGroup, currentUser } = this.props;
         const { countUsers } = this.state;
 
-        if (currentGroup === 'all') {
-            this.setState({
-                countUsers: list.length,
-            });
-        } else {
-            this.setState({
-                countUsers: list.filter(item => item.group === currentGroup).length,
-            });
+        if (list) {
+
+            if (currentGroup === 'all') {
+                this.setState({
+                    countUsers: list.length,
+                });
+            } else {
+                this.setState({
+                    countUsers: list.filter(item => item.group === currentGroup).length,
+                });
+            }
         }
 
         return <Navigation length={countUsers} current={currentUser} onClick={this.onHandlerClick} />
@@ -33,9 +36,10 @@ class NavigationContainer extends PureComponent {
         const { countUsers } = this.state;
 
         if (target.tagName === 'BUTTON') {
-            const prev = target.innerHTML === 'prev';
+            const prev = target.innerHTML === '&lt;';
 
             if (prev) {
+                console.log(currentUser);
                 this.setState({
                    current: currentUser > 1 ? setCurrentUser(currentUser - 1) : 1,
                 });

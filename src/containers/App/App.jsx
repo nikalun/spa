@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Route, Switch } from "react-router-dom";
 import classnames from 'classnames';
 
-import { Sidebar } from '../../components/Sidebar/Sidebar.jsx';
+import { SidebarContainer } from '../../containers/SidebarContainer/SidebarContainer.jsx';
 import { Index } from '../../components/Index/Index.jsx';
 import { About } from '../../components/About/About.jsx';
 import { Menu } from '../../components/Menu/Menu.jsx';
 
-import css from './App.styl';
+import { usersList } from "../../actions";
 
-export class App extends Component {
+import css from './theme/App.styl';
+
+class App extends Component {
     state = {
         isOpenSidebar: false,
+    }
+
+    componentDidMount() {
+        this.props.usersList('./src/users.json');
     }
 
     render() {
@@ -22,7 +30,7 @@ export class App extends Component {
             <div className={css.container}>
                 <div className={sidebar}>
                     <aside>
-                        <Sidebar />
+                        <SidebarContainer />
                     </aside>
                 </div>
                 <div className={css.content}>
@@ -49,3 +57,11 @@ export class App extends Component {
         })
     }
 }
+
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({
+        usersList,
+    }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(App);

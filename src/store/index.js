@@ -1,8 +1,12 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+
+import { usersData } from '../sagas/index.js';
 
 import { users, currentUser, currentGroup } from '../reducers/index.js';
+
+const sagaMiddleware = createSagaMiddleware();
 
 const reducer = combineReducers({
     users,
@@ -10,4 +14,6 @@ const reducer = combineReducers({
     currentGroup,
 });
 
-export const store = createStore(reducer, applyMiddleware(logger, thunk));
+export const store = createStore(reducer, applyMiddleware(logger, sagaMiddleware));
+
+sagaMiddleware.run(usersData);

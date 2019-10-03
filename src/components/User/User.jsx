@@ -1,20 +1,28 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
+import { Button } from '../../components/Button/Button.jsx';
+
+import css from './theme/User.styl';
+
+const buttonTheme = {
+    container: css.buttonContainer,
+};
+
 export const User = memo( props => {
     const { data: { name, description }, onClick } = props;
 
     return (
         <div onClick={onClick}>
-            <div>
-                <div>Name:</div>
-                <div contentEditable={false}>{name}</div>
-                <button>edit</button>
+            <div className={css.item}>
+                <div className={css.title}> Name:</div>
+                <div className={css.name} contentEditable={false}>{name}</div>
+                <Button theme={buttonTheme}>edit</Button>
             </div>
-            <div>
-                <div>Description:</div>
-                <div contentEditable={false}>{description}</div>
-                <button>edit</button>
+            <div className={css.item}>
+                <div className={css.title}>Description:</div>
+                <div className={css.name} contentEditable={false}>{description}</div>
+                <Button theme={buttonTheme}>edit</Button>
             </div>
         </div>
     )

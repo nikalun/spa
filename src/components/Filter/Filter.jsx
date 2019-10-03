@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
-import css from './Filter.styl';
+import css from './theme/Filter.styl';
 
 const list = [
     {
