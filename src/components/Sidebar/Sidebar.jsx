@@ -20,7 +20,7 @@ export const Sidebar = props => {
     return (
         <div className={css.container}>
             <nav>
-                {paths.map(({ url, title }) => <li onClick={onClick} className={css.item}> <Link to={url}>{title}</Link> </li> )}
+                {paths.map(({ url, title }, idx) => <li onClick={onClick} key={idx} className={css.item}> <Link to={url}>{title}</Link> </li> )}
             </nav>
         </div>
     );

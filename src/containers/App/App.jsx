@@ -9,7 +9,7 @@ import { Index } from '../../components/Index/Index.jsx';
 import { About } from '../../components/About/About.jsx';
 import { Menu } from '../../components/Menu/Menu.jsx';
 
-import { usersList } from "../../actions";
+import { fetchUsersList } from "../../actions";
 
 import css from './theme/App.styl';
 
@@ -19,7 +19,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        this.props.usersList('./src/users.json');
+        this.props.fetchUsersList('./src/users.json');
     }
 
     render() {
@@ -60,7 +60,7 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-        usersList,
+        fetchUsersList,
     }, dispatch);
 };
 

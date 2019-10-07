@@ -1,16 +1,14 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import { User } from '../../components/User/User.jsx';
 
 class UsersContainers extends PureComponent {
     render() {
-        const { data, currentUser, currentGroup } = this.props;
+        const { data, currentUser, pending, currentGroup } = this.props;
         let dataUser = [{}];
 
-        if (data) {
-
+        if (data.length > 0) {
             if (currentGroup === 'all') {
                 dataUser = data.filter(item => item.id === currentUser - 1);
             } else {
@@ -19,8 +17,11 @@ class UsersContainers extends PureComponent {
                     .filter( (item, idx) => idx === currentUser - 1);
             }
         }
-
-        return <User data={dataUser[0]} onClick={this.onHandlerClick}/>
+        return (
+            <Fragment>
+                <User data={dataUser[0]} pending={pending} onClick={this.onHandlerClick}/>
+            </Fragment>
+        )
     }
 
     onHandlerClick = e => {
@@ -38,6 +39,7 @@ class UsersContainers extends PureComponent {
 const mapStateToProps = state => {
     return {
         data: state.users.list,
+        pending: state.users.pending,
         currentUser: state.currentUser,
         currentGroup: state.currentGroup,
     };

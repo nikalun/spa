@@ -12,16 +12,23 @@ export const setCurrentUser = current => {
     }
 };
 
-export const usersList = url => {
+export const fetchUsersList = url => {
     return {
-        type: 'USERS_LIST',
+        type: 'FETCH_USERS_LIST',
         payload: url,
     }
 };
 
-export const getUsersList = list => {
+export const fetchSuccess = list => {
     return {
-        type: 'GET_USERS_LIST',
+        type: 'FETCH_USERS_LIST_SUCCESS',
         payload: list
+    }
+};
+
+export const fetchError = error => {
+    return {
+        type: 'FETCH_USERS_LIST_ERROR',
+        error: error
     }
 };

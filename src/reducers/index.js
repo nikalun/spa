@@ -1,5 +1,3 @@
-import Users from '../users';
-
 export function currentUser(state = 1, action) {
     switch (action.type) {
         case 'SET_CURRENT_USER':
@@ -18,12 +16,30 @@ export function currentGroup(state = 'all', action) {
     }
 }
 
-export function users(state = {}, action) {
+const initialState = {
+    pending: false,
+    list: [],
+    error: null,
+};
+
+export function users(state = initialState, action) {
     switch (action.type) {
-        case 'GET_USERS_LIST':
+        case 'FETCH_USERS_LIST':
             return state = {
                 ...state,
-                ...action.payload
+                pending: true,
+            };
+        case 'FETCH_USERS_LIST_SUCCESS':
+            return state = {
+                ...state,
+                list: [...action.payload.list],
+                pending: false,
+            };
+        case 'FETCH_USERS_LIST_ERROR':
+            return state = {
+                ...state,
+                pending: false,
+                error: action.error,
             };
         case 'FILTER_GROUP':
             return action.payload;

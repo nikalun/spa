@@ -8,7 +8,7 @@ import {setCurrentUser} from "../../actions";
 class NavigationContainer extends PureComponent {
     state = {
         countUsers: 0
-    };
+    }
 
     render() {
         const { list, currentGroup, currentUser } = this.props;

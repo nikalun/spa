@@ -6,17 +6,21 @@ import { Filter } from '../../components/Filter/Filter.jsx';
 import { setGroup, setCurrentUser } from "../../actions";
 
 class FilterContainer extends PureComponent {
-    render() {
-        return <Filter {...this.props} onClick={this.onHandlerClick}/>
+    state = {
+        active: 0,
     }
 
-    onHandlerClick = e => {
-        const { setGroup, setCurrentUser } = this.props;
-        const target = e.target;
-        const group = target.getAttribute('data-filter');
+    render() {
+        return <Filter {...this.props} activeFilter={this.state.active} onClick={this.onHandlerClick}/>
+    }
 
-        setGroup(group);
+    onHandlerClick = ({ id, filter }) => {
+        const { setGroup, setCurrentUser } = this.props;
+        setGroup(filter);
         setCurrentUser(1);
+        this.setState({
+           active: id,
+        });
     }
 }
 
