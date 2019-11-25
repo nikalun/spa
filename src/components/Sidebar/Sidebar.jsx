@@ -24,8 +24,8 @@ export const Sidebar = props => {
             </nav>
         </div>
     );
-}
+};
 
-Sidebar.PropTypes = {
+Sidebar.propTypes = {
     onClick: PropTypes.func,
-}
+};

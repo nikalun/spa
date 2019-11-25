@@ -11,6 +11,8 @@ const buttonTheme = {
 
 export const User = memo( props => {
     const { data: { name, description }, onClick, pending } = props;
+    const role = localStorage.getItem('role');
+    const isAdmin = role === 'admin';
     return (
         <div onClick={onClick}>
             <div className={css.item}>
@@ -18,14 +20,14 @@ export const User = memo( props => {
                 <div className={css.name} contentEditable={false}>
                     {pending ? 'Данные загружаются..' : name}
                 </div>
-                <Button theme={buttonTheme}>edit</Button>
+                {isAdmin && <Button theme={buttonTheme}>edit</Button>}
             </div>
             <div className={css.item}>
                 <div className={css.title}>Description:</div>
                 <div className={css.name} contentEditable={false}>
                     {pending ? 'Данные загружаются..' : description}
                 </div>
-                <Button theme={buttonTheme}>edit</Button>
+                {isAdmin && <Button theme={buttonTheme}>edit</Button> }
             </div>
         </div>
     )

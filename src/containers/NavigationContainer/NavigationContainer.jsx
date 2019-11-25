@@ -3,31 +3,22 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Navigation } from '../../components/Navigation/Navigation.jsx';
-import {setCurrentUser} from "../../actions";
+import { setCurrentUser } from "../../actions";
 
 class NavigationContainer extends PureComponent {
-    state = {
-        countUsers: 0
-    }
+    countUsers = 0;
 
     render() {
         const { list, currentGroup, currentUser } = this.props;
-        const { countUsers } = this.state;
 
         if (list) {
-
             if (currentGroup === 'all') {
-                this.setState({
-                    countUsers: list.length,
-                });
+                this.countUsers = list.length;
             } else {
-                this.setState({
-                    countUsers: list.filter(item => item.group === currentGroup).length,
-                });
+                this.countUsers = list.filter(item => item.group === currentGroup).length;
             }
         }
-
-        return <Navigation length={countUsers} current={currentUser} onClick={this.onHandlerClick} />
+        return <Navigation length={this.countUsers} current={currentUser} onClick={this.onHandlerClick} />
     }
 
     onHandlerClick = e => {
@@ -39,7 +30,6 @@ class NavigationContainer extends PureComponent {
             const prev = target.innerHTML === '&lt;';
 
             if (prev) {
-                console.log(currentUser);
                 this.setState({
                    current: currentUser > 1 ? setCurrentUser(currentUser - 1) : 1,
                 });

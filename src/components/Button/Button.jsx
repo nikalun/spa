@@ -15,7 +15,7 @@ Button.defaultProps = {
     theme: {},
 };
 
-Button.PropTypes = {
+Button.propTypes = {
     onClick: PropTypes.func,
     children: PropTypes.node,
     disabled: PropTypes.bool,

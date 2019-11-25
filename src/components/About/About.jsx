@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React  from 'react';
 
-export class About extends Component {
-    render() {
-        return (
-            <div>About text</div>
-        )
-    }
-}
+import css from './theme/About.styl';
+
+export const About = () => {
+    return (
+        <div className={css.container}>About text</div>
+    )
+};

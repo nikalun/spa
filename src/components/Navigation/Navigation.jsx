@@ -25,7 +25,8 @@ export const Navigation = memo(props => {
     )
 });
 
-Navigation.PropTypes = {
+Navigation.propTypes = {
     onClick: PropTypes.func,
     current: PropTypes.number,
+    length: PropTypes.number,
 };

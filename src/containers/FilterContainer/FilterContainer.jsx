@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -8,7 +9,12 @@ import { setGroup, setCurrentUser } from "../../actions";
 class FilterContainer extends PureComponent {
     state = {
         active: 0,
-    }
+    };
+
+    static propTypes = {
+        setGroup: PropTypes.func,
+        setCurrentUser: PropTypes.func,
+    };
 
     render() {
         return <Filter {...this.props} activeFilter={this.state.active} onClick={this.onHandlerClick}/>

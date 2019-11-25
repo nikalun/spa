@@ -45,7 +45,7 @@ export const Filter = memo(props => {
     )
 });
 
-Filter.PropTypes = {
+Filter.propTypes = {
     onClick: PropTypes.func,
     activeFilter: PropTypes.number,
 };

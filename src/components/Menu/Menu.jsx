@@ -8,6 +8,6 @@ export const Menu = memo(props => {
     return  <Button onClick={onClick}>Menu</Button>
 });
 
-Menu.PropTypes = {
+Menu.propTypes = {
     onClick: PropTypes.func,
-}
+};

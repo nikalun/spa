@@ -6,7 +6,7 @@
   "scripts": {
     "build:dev": "NODE_ENV=development webpack --mode=development",
     "build:prod": "NODE_ENV=production webpack --mode=production",
-    "start": "webpack-dev-server --mode development --open"
+    "start": "webpack-dev-server --mode development --open --history-api-fallback"
   },
   "author": "",
   "license": "ISC",
