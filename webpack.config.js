@@ -22,6 +22,12 @@ const config = {
                 }
             },
             {
+                test: /\.tsx?$/,
+                use: {
+                    loader: 'ts-loader',
+                },
+            },
+            {
                 test: /\.styl/,
                 use: [
                     isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
