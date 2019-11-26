@@ -8,8 +8,8 @@ import { SidebarContainer } from '../../containers/SidebarContainer/SidebarConta
 import { Index } from '../../components/Index/Index.jsx';
 import { About } from '../../components/About/About.jsx';
 import { Menu } from '../../components/Menu/Menu.jsx';
-import { LoginContainer } from '../../containers/LoginContainer/LoginContainer.jsx';
-import { LogoutContainer } from '../../containers/LogoutContainer/LogoutContainer.jsx';
+import { LoginContainer } from '../../containers/LoginContainer/LoginContainer.tsx';
+import { LogoutContainer } from '../../containers/LogoutContainer/LogoutContainer.tsx';
 
 import { fetchUsersList } from "../../actions";
 
