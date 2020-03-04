@@ -1,17 +1,22 @@
-import React, { memo } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import {memo, FC} from 'react';
 
-import { Button } from '../../components/Button/Button.jsx';
+import { Button } from '../../components/Button/Button';
 
-import css from './theme/Navigation.styl';
+import * as css from './theme/Navigation.styl';
 
 const buttonTheme = {
     container: css.buttonContainer,
 };
 
-export const Navigation = memo(props => {
-    const { length, onClick, current } = props;
+type NavigationProps = {
+    current: number;
+    onClick: () => void;
+    length: number;
+};
 
+export const Navigation: FC<NavigationProps> = memo(props => {
+    const { length, onClick, current } = props;
     return (
         <div className={css.container} onClick={onClick}>
             <Button theme={buttonTheme}>{`<`}</Button>
@@ -24,9 +29,3 @@ export const Navigation = memo(props => {
         </div>
     )
 });
-
-Navigation.propTypes = {
-    onClick: PropTypes.func,
-    current: PropTypes.number,
-    length: PropTypes.number,
-};

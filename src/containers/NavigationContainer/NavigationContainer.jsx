@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { Navigation } from '../../components/Navigation/Navigation.jsx';
+import { Navigation } from '../../components/Navigation/Navigation.tsx';
 import { setCurrentUser } from "../../actions";
 
 class NavigationContainer extends PureComponent {
@@ -10,7 +10,7 @@ class NavigationContainer extends PureComponent {
 
     render() {
         const { list, currentGroup, currentUser } = this.props;
-
+        console.log(this.countUsers);
         if (list) {
             if (currentGroup === 'all') {
                 this.countUsers = list.length;
@@ -30,13 +30,9 @@ class NavigationContainer extends PureComponent {
             const prev = target.innerHTML === '&lt;';
 
             if (prev) {
-                this.setState({
-                   current: currentUser > 1 ? setCurrentUser(currentUser - 1) : 1,
-                });
+                currentUser > 1 ? setCurrentUser(currentUser - 1) : 1;
             } else {
-                this.setState({
-                    current: currentUser < countUsers ? setCurrentUser(currentUser + 1) : countUsers,
-                });
+                currentUser < countUsers ? setCurrentUser(currentUser + 1) : countUsers;
             }
         }
     }

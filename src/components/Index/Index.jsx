@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import UserContainers from '../../containers/UsersContainers/UsersContainers.jsx';
 import NavigationContainer from '../../containers/NavigationContainer/NavigationContainer.jsx';
-import FilterContainer from '../../containers/FilterContainer/FilterContainer.jsx';
+import FilterContainer from '../../containers/FilterContainer/FilterContainer';
 
 export class Index extends Component {
     render() {
