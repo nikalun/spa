@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { Component } from 'react';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 
-import { Logout } from '../../components/Logout/Logout.tsx';
+import { Logout } from '../../components/Logout/Logout';
 
 type LogoutContainerProps = {
-    onLogout: () => void,
+    onLogout?: () => void,
 };
 
-export class LogoutContainer extends Component<LogoutContainerProps> {
-
+class RawLogoutContainer extends Component<LogoutContainerProps> {
     render() {
         const user = localStorage.getItem('user');
         return <Logout onLogout={this.onLogoutHandler} user={user}/>
@@ -35,3 +35,5 @@ export class LogoutContainer extends Component<LogoutContainerProps> {
         });
     }
 }
+
+export const LogoutContainer = withRouter(RawLogoutContainer);

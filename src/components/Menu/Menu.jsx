@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
-import { Button } from '../../components/Button/Button.jsx';
+import { Button } from '../../components/Button/Button';
 
 export const Menu = memo(props => {
     const { onClick } = props;
