@@ -1,19 +1,19 @@
 import * as React from 'react';
-import { PureComponent, Fragment, MouseEvent } from 'react';
+import { PureComponent, MouseEvent } from 'react';
 import { connect } from 'react-redux';
 
 import { User } from '../../components/User/User';
 
 import { List } from './UserContainers.model';
 
-type UsersContainersprops = {
+type UsersContainersProps = {
     data: List[];
     currentUser: number;
     pending: boolean;
     currentGroup: string;
 }
 
-class UsersContainers extends PureComponent<UsersContainersprops> {
+class UsersContainers extends PureComponent<UsersContainersProps> {
     render() {
         const { data, currentUser, pending, currentGroup } = this.props;
         let dataUser = [];
@@ -28,18 +28,15 @@ class UsersContainers extends PureComponent<UsersContainersprops> {
             }
         }
 
-        return (
-            <Fragment>
-                <User data={dataUser} pending={pending} onClick={this.onHandlerClick}/>
-            </Fragment>
-        )
+        return <User data={dataUser} pending={pending} onClick={this.onHandlerClick}/>;
     }
 
-    onHandlerClick = (e: MouseEvent<HTMLDivElement>) => {
+    private onHandlerClick = (e: MouseEvent<HTMLDivElement>) => {
         const target = e.target as HTMLButtonElement;
         const { tagName } = target;
+        const isButton = tagName === 'BUTTON';
 
-        if (tagName === 'BUTTON') {
+        if (isButton) {
             const previous = target.previousSibling as HTMLDivElement;
             const editable = previous.getAttribute('contenteditable');
 

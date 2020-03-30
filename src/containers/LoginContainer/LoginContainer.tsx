@@ -1,25 +1,38 @@
 import * as React from 'react';
-import { Component, FormEvent, Fragment } from 'react';
+import { Component, FormEvent } from 'react';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 import { Route, Switch, Redirect, withRouter, RouteComponentProps } from "react-router-dom";
 
-import { Index } from '../../components/Index/Index';
 import { Login } from '../../components/Login/Login';
 
 type LoginContainerProps = {
     onLoggedIn: () => void,
 } & RouteComponentProps;
 
-class RawLoginContainer extends Component<LoginContainerProps> {
-    params: object;
+type RawLoginContainerState = {
+    login: string;
+    password: string;
+}
+
+class RawLoginContainer extends Component<LoginContainerProps, RawLoginContainerState> {
+    readonly state = {
+        login: '',
+        password: '',
+    };
 
     render() {
-        return (
-            <Fragment>
-                <Login onSubmit={this.onSubmitHandler} onGetParams={this.onGetParamsHandler}/>
-            </Fragment>
-        );
+        return <Login onSubmit={this.onSubmitHandler} onChange={this.onHandleChange}/>;
     }
+
+    private onHandleChange = (event: FormEvent<HTMLInputElement>) => {
+        const target = event.target as HTMLInputElement;
+        const { name, value } = target;
+
+        this.setState(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
 
     private onSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -36,38 +49,30 @@ class RawLoginContainer extends Component<LoginContainerProps> {
         });
     };
 
-    private onGetParamsHandler = (params: object) => {
-        this.params = params;
-    };
-
-    private userData = async function(url: string) {
-        const { login: { current: { value } }} = this.params;
+    private userData = async (url: string) => {
+        const { login } = this.state;
 
         const config: AxiosRequestConfig = {
-            params: { login: value},
+            params: { login },
         };
 
-        const data: AxiosResponse = await axios.get(url, config);
-
-        return data;
+        return await axios.get(url, config);
     };
 
-    private loggedIn = async function(url: string) {
-        const { login: { current: { value: loginValue } }, password: { current: { value: passValue } } } = this.params;
+    private loggedIn = async (url: string) => {
+        const { login, password } = this.state;
 
         const config: AxiosRequestConfig = {
             url,
             method: 'post',
             withCredentials: true,
             data: {
-                login: loginValue,
-                password: passValue,
+                login,
+                password,
             },
         };
 
-        const logged: AxiosResponse = await axios(config);
-
-        return logged;
+        return await axios(config);
     }
 }
 

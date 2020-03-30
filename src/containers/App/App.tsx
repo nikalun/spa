@@ -18,7 +18,7 @@ type AppState = {
 };
 
 class App extends Component<AppProps, AppState> {
-    state = {
+    readonly state = {
         loggedIn: !!localStorage.getItem('user'),
     };
 

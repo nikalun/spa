@@ -11,22 +11,19 @@ type LogoutContainerProps = {
 
 class RawLogoutContainer extends Component<LogoutContainerProps> {
     render() {
-        const user = localStorage.getItem('user');
-        return <Logout onLogout={this.onLogoutHandler} user={user}/>
+        return <Logout onLogout={this.onLogoutHandler}/>;
     }
 
-    logoutUser = async function(url: string) {
+    private logoutUser = async function(url: string) {
         const config: AxiosRequestConfig = {
             url,
             method: 'post',
         };
 
-        const logout: AxiosResponse = await axios(config);
-
-        return logout;
+        return await axios(config);
     };
 
-    onLogoutHandler = () => {
+    private onLogoutHandler = () => {
         this.logoutUser('http://localhost:8888/logout').then(() => {
             localStorage.removeItem('user');
             localStorage.removeItem('login');

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {PureComponent} from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -16,7 +16,7 @@ type FilterContainerState = {
 }
 
 class FilterContainer extends PureComponent<FilterContainerProps, FilterContainerState> {
-    state = {
+    readonly state = {
         active: 0,
     };
 
@@ -24,7 +24,7 @@ class FilterContainer extends PureComponent<FilterContainerProps, FilterContaine
         return <Filter {...this.props} activeFilter={this.state.active} onClick={this.onHandlerClick}/>
     }
 
-    onHandlerClick = (id: number, filter: string ) => {
+    private onHandlerClick = (id: number, filter: string ) => {
         const { setGroup, setCurrentUser } = this.props;
         setGroup(filter);
         setCurrentUser(1);

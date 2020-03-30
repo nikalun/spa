@@ -20,7 +20,7 @@ type NavigationContainerState = {
 };
 
 class NavigationContainer extends PureComponent<NavigationContainerProps, NavigationContainerState> {
-    state = {
+    readonly state = {
         countUsers: 0,
     };
 
@@ -36,12 +36,13 @@ class NavigationContainer extends PureComponent<NavigationContainerProps, Naviga
         return <Navigation length={countUsers} current={currentUser} onClick={this.onHandlerClick} />
     }
 
-    onHandlerClick = (e: MouseEvent<HTMLDivElement>) => {
+    private onHandlerClick = (e: MouseEvent<HTMLDivElement>) => {
         const target = e.target as HTMLDivElement;
         const { setCurrentUser, currentUser } = this.props;
         const { countUsers } = this.state;
+        const isButton = target.tagName === 'BUTTON';
 
-        if (target.tagName === 'BUTTON') {
+        if (isButton) {
             const prev = target.innerHTML === '&lt;';
 
             if (prev) {

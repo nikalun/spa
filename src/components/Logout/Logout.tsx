@@ -1,14 +1,14 @@
 import * as React  from 'react';
-import {FunctionComponent, MouseEvent} from 'react';
+import { FC, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 
 interface LogoutProps {
-    user: string;
     onLogout: (event: MouseEvent) => void;
 }
 
-export const Logout: FunctionComponent<LogoutProps> = props => {
-    const {user, onLogout} = props;
+export const Logout: FC<LogoutProps> = props => {
+    const { onLogout } = props;
+    const user = localStorage.getItem('user');
     return (
         <div>
             <span>Привет, {user}. </span>

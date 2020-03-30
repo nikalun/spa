@@ -16,10 +16,10 @@ type UserProps = {
 export const User: FC<UserProps> = memo( props => {
     const { data, onClick, pending } = props;
     const role = localStorage.getItem('role');
-    console.log(role);
     const isAdmin = role === 'admin';
     const name = data.length > 0 && data[0].name;
     const description = data.length > 0 && data[0].description;
+
     return (
         <div onClick={onClick}>
             <div className={css.item}>
@@ -27,7 +27,6 @@ export const User: FC<UserProps> = memo( props => {
                 <div className={css.name} contentEditable={false}>
                     {pending ? 'Данные загружаются...' : name}
                 </div>
-                {isAdmin && <Button>edit</Button>}
             </div>
             <div className={css.item}>
                 <div className={css.title}>Description:</div>

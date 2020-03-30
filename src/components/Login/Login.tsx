@@ -1,22 +1,18 @@
 import * as React from 'react';
-import { FunctionComponent, createRef, FormEvent } from 'react';
+import { FC, FormEvent } from 'react';
 
 type LoginProps = {
+    onChange: (event: FormEvent<HTMLInputElement>) => void;
     onSubmit: (event: FormEvent<HTMLFormElement>) => void;
-    onGetParams: (params: object) => void;
 };
 
-export const Login: FunctionComponent<LoginProps> = props => {
-    const { onSubmit, onGetParams } = props;
-    const login = createRef<HTMLInputElement>();
-    const password = createRef<HTMLInputElement>();
-
-    onGetParams && onGetParams({login, password});
+export const Login: FC<LoginProps> = props => {
+    const { onChange, onSubmit } = props;
 
     return (
         <form onSubmit={onSubmit}>
-            <input type="text" placeholder={'Логин'} ref={login}/>
-            <input type="password" placeholder={'Пароль'} ref={password}/>
+            <input type="text" placeholder={'Логин'} name="login" onChange={onChange}/>
+            <input type="password" placeholder={'Пароль'} name="password" onChange={onChange}/>
             <button type="submit">Войти</button>
         </form>
     );
