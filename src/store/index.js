@@ -9,11 +9,14 @@ import { users, currentUser, currentGroup } from '../reducers/index.js';
 const sagaMiddleware = createSagaMiddleware();
 
 const reducer = combineReducers({
-    users,
-    currentUser,
-    currentGroup,
+	users,
+	currentUser,
+	currentGroup
 });
 
-export const store = createStore(reducer, applyMiddleware(logger, sagaMiddleware));
+export const store = createStore(
+	reducer,
+	applyMiddleware(logger, sagaMiddleware)
+);
 
 sagaMiddleware.run(usersData);

@@ -6,13 +6,13 @@ import NavigationContainer from '../../containers/NavigationContainer/Navigation
 import FilterContainer from '../../containers/FilterContainer/FilterContainer';
 
 export const Index = () => {
-    return(
-        <div>
-            <FilterContainer />
-            <div>
-                <NavigationContainer />
-            </div>
-            <UserContainers />
-        </div>
-    );
+	return (
+		<div>
+			<FilterContainer />
+			<div>
+				<NavigationContainer />
+			</div>
+			<UserContainers />
+		</div>
+	);
 };
