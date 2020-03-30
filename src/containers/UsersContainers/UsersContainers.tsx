@@ -19,13 +19,11 @@ class UsersContainers extends PureComponent<UsersContainersProps> {
 		let dataUser = [];
 
 		if (data.length > 0) {
-			if (currentGroup === 'all') {
-				dataUser = data.filter(({ id }) => id === currentUser - 1);
-			} else {
-				dataUser = data
-					.filter(({ group }) => group === currentGroup)
-					.filter((item, idx) => idx === currentUser - 1);
-			}
+			currentGroup === 'all'
+				? (dataUser = data.filter(({ id }) => id === currentUser - 1))
+				: (dataUser = data
+						.filter(({ group }) => group === currentGroup)
+						.filter((item, idx) => idx === currentUser - 1));
 		}
 
 		return (
