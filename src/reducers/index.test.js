@@ -1,5 +1,27 @@
-import { fetchSuccess, fetchUsersList, fetchError } from '../actions/index';
-import { users } from './index';
+import { fetchSuccess, fetchUsersList, fetchError, setCurrentUser, setGroup } from '../actions/index';
+import { users, currentGroup, currentUser } from './index';
+
+describe('Current user test', () => {
+    it('Set current user', () => {
+        const initialState = 1;
+        const newState = 2;
+        const action = setCurrentUser(newState);
+        const reducer = currentUser(initialState, action);
+
+        expect(reducer).toEqual(newState);
+    });
+});
+
+describe('Current group test', () => {
+    it('Set current group', () => {
+        const initialState = 'all';
+        const newState = 'First Group';
+        const action = setGroup(newState);
+        const reducer = currentGroup(initialState, action);
+
+        expect(reducer).toEqual(newState);
+    });
+});
 
 describe('Users reducer tests', () => {
     const initialState = {
