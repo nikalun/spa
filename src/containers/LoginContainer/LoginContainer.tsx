@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { Component, FormEvent } from 'react';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
-import { Route, Switch, Redirect, withRouter, RouteComponentProps } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { Login } from '../../components/Login/Login';
 
-type LoginContainerProps = {
-    onLoggedIn: () => void,
-} & RouteComponentProps;
+type LoginContainerProps = RouteComponentProps;
 
 type RawLoginContainerState = {
     login: string;

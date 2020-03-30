@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Navigation } from '../../components/Navigation/Navigation';
-import { setCurrentUser } from "../../actions";
+import { setCurrentUser } from '../../actions';
 
 import { List } from './NavigationContainer.model';
 
@@ -28,7 +28,7 @@ class NavigationContainer extends PureComponent<NavigationContainerProps, Naviga
         const { list, currentGroup, currentUser } = this.props;
         const { countUsers } = this.state;
         if (list) {
-            const countUsers = currentGroup === 'all' ? list.length : list.filter(item => item.group === currentGroup).length;
+            const countUsers = currentGroup === 'all' ? list.length : list.filter(({ group }) => group === currentGroup).length;
             this.setState({
                 countUsers,
             });
@@ -39,17 +39,11 @@ class NavigationContainer extends PureComponent<NavigationContainerProps, Naviga
     private onHandlerClick = (e: MouseEvent<HTMLDivElement>) => {
         const target = e.target as HTMLDivElement;
         const { setCurrentUser, currentUser } = this.props;
-        const { countUsers } = this.state;
         const isButton = target.tagName === 'BUTTON';
 
         if (isButton) {
             const prev = target.innerHTML === '&lt;';
-
-            if (prev) {
-                currentUser > 1 ? setCurrentUser(currentUser - 1) : 1;
-            } else {
-                currentUser < countUsers ? setCurrentUser(currentUser + 1) : countUsers;
-            }
+            prev ? setCurrentUser(currentUser - 1) : setCurrentUser(currentUser + 1);
         }
     }
 }

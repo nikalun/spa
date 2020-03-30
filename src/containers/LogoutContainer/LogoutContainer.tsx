@@ -1,20 +1,16 @@
 import * as React from 'react';
 import { Component } from 'react';
-import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 
 import { Logout } from '../../components/Logout/Logout';
 
-type LogoutContainerProps = {
-    onLogout?: () => void,
-};
-
-class RawLogoutContainer extends Component<LogoutContainerProps> {
+class RawLogoutContainer extends Component {
     render() {
         return <Logout onLogout={this.onLogoutHandler}/>;
     }
 
-    private logoutUser = async function(url: string) {
+    private logoutUser = async (url: string) => {
         const config: AxiosRequestConfig = {
             url,
             method: 'post',
@@ -28,7 +24,6 @@ class RawLogoutContainer extends Component<LogoutContainerProps> {
             localStorage.removeItem('user');
             localStorage.removeItem('login');
             localStorage.removeItem('role');
-            this.props.onLogout();
         });
     }
 }
