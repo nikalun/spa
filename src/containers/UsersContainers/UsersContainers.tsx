@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 
 import { User } from '../../components/User/User';
 
-import { List } from './UserContainers.model';
+import { rootReducerType } from '../../store';
+import { ListType } from '../../reducers';
 
 type UsersContainersProps = {
-	data: List[];
+	data: ListType[];
 	currentUser: number;
 	pending: boolean;
 	currentGroup: string;
@@ -15,7 +16,13 @@ type UsersContainersProps = {
 
 class UsersContainers extends PureComponent<UsersContainersProps> {
 	render() {
-		const { data, currentUser, pending, currentGroup } = this.props;
+		const {
+		    data,
+            currentUser,
+            pending,
+            currentGroup
+		} = this.props;
+
 		let dataUser = [];
 
 		if (data.length > 0) {
@@ -47,13 +54,18 @@ class UsersContainers extends PureComponent<UsersContainersProps> {
 	};
 }
 
-const mapStateToProps = state => {
-	return {
-		data: state.users.list,
-		pending: state.users.pending,
-		currentUser: state.currentUser,
-		currentGroup: state.currentGroup
-	};
-};
+const mapStateToProps = ({
+    users: {
+        list,
+        pending
+    },
+    currentGroup,
+    currentUser,
+}: rootReducerType) => ({
+    data: list,
+    pending,
+    currentUser,
+    currentGroup,
+});
 
-export default connect(mapStateToProps)(UsersContainers);
+export default connect<UsersContainersProps>(mapStateToProps)(UsersContainers);

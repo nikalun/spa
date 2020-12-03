@@ -7,6 +7,7 @@ import { Navigation } from '../../components/Navigation/Navigation';
 import { setCurrentUser } from '../../actions';
 
 import { List } from './NavigationContainer.model';
+import { rootReducerType } from '../../store';
 
 type NavigationContainerProps = {
 	list: List[];
@@ -60,13 +61,17 @@ class NavigationContainer extends PureComponent<
 	};
 }
 
-const mapStateToProps = state => {
-	return {
-		list: state.users.list,
-		currentGroup: state.currentGroup,
-		currentUser: state.currentUser
-	};
-};
+const mapStateToProps = ({
+    users: {
+        list,
+    },
+    currentGroup,
+    currentUser,
+}: rootReducerType) => ({
+    list,
+    currentGroup,
+    currentUser,
+});
 
 const mapDispatchToProps = dispatch => {
 	return bindActionCreators(

@@ -4,7 +4,7 @@ import createSagaMiddleware from 'redux-saga';
 
 import { usersData } from '../sagas/index.js';
 
-import { users, currentUser, currentGroup } from '../reducers/index.js';
+import { users, currentUser, currentGroup } from '../reducers/index';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -13,6 +13,8 @@ const reducer = combineReducers({
 	currentUser,
 	currentGroup
 });
+
+export type rootReducerType = ReturnType<typeof reducer>;
 
 export const store = createStore(
 	reducer,
